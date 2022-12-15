@@ -1,5 +1,4 @@
-pokeOneWeight = 0;
-pokeTwoWeight = 0;
+
 pokeList = [];
 userTeam = {health_1: 100, health_2: 100, health_3: 100, health_4: 100};
 enemyTeam = {health_1: 100, health_2: 100, health_3: 100, health_4: 100};
@@ -194,34 +193,78 @@ function attack () {
  let enemytoAttack = (Math.floor(Math.random() * (8 - 3) + 3));
  if (enemytoAttack < 5) {
   alert('The attack missed');
+  enemyAttack();
  } else if (enemytoAttack === 5) {
-  enemyTeam.health_1 = enemyTeam.health_1 - 20;
+  enemyTeam.health_1 = enemyTeam.health_1 - 40;
   alert('The attack hit! Pokemon 1 took damage. This pokemon has ' + enemyTeam.health_1 + ' health remaining');
   if(enemyTeam.health_1 <= 0) {
     alert('pokemon 1 fainted');
+    $("#memOne").hide();
   }
+  enemyAttack();
  } else if (enemytoAttack === 6) {
-  enemyTeam.health_2 = enemyTeam.health_2 - 20;
+  enemyTeam.health_2 = enemyTeam.health_2 - 40;
   alert('The attack hit! Pokemon 2 took damage. This pokemon has ' + enemyTeam.health_2 + ' health remaining');
   if(enemyTeam.health_2 <= 0) {
     alert('pokemon 2 fainted');
+    $("#memTwo").hide();
   }
+  enemyAttack();
  } else if (enemytoAttack === 7) {
-  enemyTeam.health_3 = enemyTeam.health_3 - 20;
+  enemyTeam.health_3 = enemyTeam.health_3 - 40;
   alert('The attack hit! Pokemon 3 took damage. This pokemon has ' + enemyTeam.health_3 + ' health remaining');
   if(enemyTeam.health_3 <= 0) {
     alert('pokemon 3 fainted');
+    $("#memThree").hide();
   }
+  enemyAttack();
  } else if (enemytoAttack === 8) {
-  enemyTeam.health_4 = enemyTeam.health_4 - 20;
+  enemyTeam.health_4 = enemyTeam.health_4 - 40;
   alert('The attack hit! Pokemon 4 took damage. This pokemon has ' + enemyTeam.health_4 + ' health remaining');
   if(enemyTeam.health_4 <= 0) {
     alert('pokemon 4 fainted');
+    $("#memFour").hide();
   }
+  enemyAttack();
  }
  console.log(enemytoAttack);
 };
-function enemyAttack () {};
+function enemyAttack () {
+  alert('The enemy pokemon move to attack!')
+  let damageTaken = (Math.floor(Math.random() * (50 - 30) + 30));
+  let damageTaker = (Math.floor(Math.random() * (8 - 3) + 3));
+  if (damageTaker < 5) {
+    alert('The attack missed!')
+
+  } else if (damageTaker === 5) {
+    userTeam.health_1 = userTeam.health_1 - damageTaken;
+    alert('The attack hit! Pokemon 1 was damaged, this pokemon now has ' + userTeam.health_1) + ' health.'
+    if(userTeam.health_1 <= 0) {
+      alert('pokemon 1 fainted!')
+    }
+  } else if (damageTaker === 6) {
+    userTeam.health_2 = userTeam.health_2 - damageTaken;
+    alert('The attack hit! Pokemon 2 was damaged, this pokemon now has ' + userTeam.health_2) + ' health.'
+    if(userTeam.health_2 <= 0) {
+      alert('pokemon 2 fainted!')
+      $("#enemyPokeTwo").hide();
+    }
+  } else if (damageTaker === 7) {
+    userTeam.health_3 = userTeam.health_3 - damageTaken;
+    alert('The attack hit! Pokemon 3 was damaged, this pokemon now has ' + userTeam.health_3) + ' health.'
+    if(userTeam.health_3 <= 0) {
+      alert('pokemon 3 fainted!')
+      $("#enemyPokeThree").hide();
+    }
+  } else if (damageTaker === 8) {
+    userTeam.health_4 = userTeam.health_4 - damageTaken;
+    alert('The attack hit! Pokemon 4 was damaged, this pokemon now has ' + userTeam.health_4) + ' health.'
+    if(userTeam.health_4 <= 0) {
+      alert('pokemon 1 fainted!')
+      $("#enemyPokeFour").hide();
+    }
+  }
+};
 
 let decideWinner = function() {
   if (pokeOneWeight > pokeTwoWeight) {
