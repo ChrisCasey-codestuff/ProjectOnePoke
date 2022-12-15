@@ -7,21 +7,37 @@ body {
 img {
   width: 140px;
 }
-
+#myButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 #yourPoke{
   margin-top: 100px;
-  margin-left: 240px;
-  margin-bottom: 10px;
+  margin-left: 205px;
+  margin-bottom: 0px;
   margin-right: 150px;
 }
 
-#enemyPoke {
-  margin-top: 30px;
-  margin-left: 240px;
-  margin-bottom: 100px;
-  margin-right: 150px;
-}
+
 #pokeTeam {
   display: flex;
   flex-direction: row;
+}
+
+#flee {
+  margin-top: 30px;
+}
+
+.teamMems {
+  margin: 10 auto;
+}
+
+#enemyTeam {
+  display: flex;
+  flex-direction: row;
+}
+#enemyPoke {
+  margin-top: 0px;
+  margin-left: 180px;
 }

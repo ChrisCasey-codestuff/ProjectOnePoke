@@ -5,10 +5,15 @@ userTeam = {health_1: 100, health_2: 100, health_3: 100, health_4: 100};
 enemyTeam = {health_1: 100, health_2: 100, health_3: 100, health_4: 100};
 
 let quoteData, userInput
+
 handleGetData();
+
+
 $("#battle").on("submit", battle)
 $("#getTeam").on("submit", assembleTeam)
 $('#encounterEnemy').on('submit', encounterEnemy)
+
+
 function assembleTeam() {
   event.preventDefault()
   handleGetData();
@@ -65,7 +70,6 @@ function assembleTeam() {
    //$('#pokeImgTwo').attr('src', userTeam.pokeTwo.sprites.back_default);
    //$('#pokeImgTwo').attr('src', userTeam.pokeThree.sprites.back_default);
    //$('#pokeImgTwo').attr('src', userTeam.pokeFour.sprites.back_default);
-   console.log(userTeam);
 }
 
 function encounterEnemy() {
@@ -119,22 +123,56 @@ function encounterEnemy() {
     (error) => {
       console.log("bad request", error)
     }
+
   )
    //$('#pokeImgOne').attr('src', userTeam.pokeOne.sprites.back_default);
    //$('#pokeImgTwo').attr('src', userTeam.pokeTwo.sprites.back_default);
    //$('#pokeImgTwo').attr('src', userTeam.pokeThree.sprites.back_default);
    //$('#pokeImgTwo').attr('src', userTeam.pokeFour.sprites.back_default);
    console.log(userTeam);
+   $(".enemyPoke").show();
 }
 
 function battle () {
   event.preventDefault()
-  $('#getTeam').replaceWith( ('<button id="flee">Flee from battle</button>') );
-  $('#encounterEnemy').replaceWith( ('<button id="attack">Attack with this pokemon</button>') );
+  if (enemyTeam.pokeOne === null) {
+    alert('There is nobody to fight you maniac!')
+    return;
+  }
+  console.log(enemyTeam);
+  console.log('hi')
+  $('#getTeam').hide()
+  $('#encounterEnemy').hide();
+  $('#battle').replaceWith('<button id="flee"> Flee!</button>')
+  $('#memOne').append('<button class="attackButt"> I choose you! Attack!</button>')
+  $('#memTwo').append('<button class="attackButt"> I choose you! Attack!</button>')
+  $('#memThree').append('<button class="attackButt"> I choose you! Attack!</button>')
+  $('#memFour').append('<button class="attackButt"> I choose you! Attack!</button>')
+  $('.attackButt').on('click', attack);
+  $('#flee').on('click', function () {
+    $('#flee').replaceWith('<button id="battle"> Battle!</button>')
+    $('#getTeam').show()
+    $('#encounterEnemy').show();
+    $('.attackButt').remove();
+    $('.enemyPoke').hide();
+    $('#battle').on('click', battle);
+    $('#assembleTeam').on('click', assembleTeam);
+    $('#encounterEnemy').on('click', encounterEnemy);
+    enemyTeam.pokeOne = null;
+    enemyTeam.pokeTwo = null;
+    enemyTeam.pokeThree = null;
+    enemyTeam.pokeFour = null;
+
+  })
   //change buttons: remove assemble buttons, add 4 'attack with this pokemon' buttons
   //attack buttons will on click subtract 30 health from poopsing pokemon"
   //if pokemon health hits 0 alert message saying pokemon has fainted.
 }
+
+
+
+
+
 
 function handleGetData(event) {
   $.ajax({
@@ -151,42 +189,39 @@ function handleGetData(event) {
     }
   )
 }
-/*
-function renderOneStats() {
-  $.ajax({
-    url: pokemonOne,
-  }).then(
-    (data) => {
-      pokemonOneStats = data;
-      console.log(pokemonOneStats)
-      pokeOneWeight += pokemonOneStats.weight;
-      renderTwoStats();
-    },
-    (error) => {
-      console.log("bad request", error)
-    }
-  )
-}
-/*
-function renderTwoStats() {
-  $.ajax({
-    url: pokemonTwo,
-  }).then(
-    (data) => {
-      pokemonTwoStats = data;
-      console.log(pokemonTwoStats)
-      pokeTwoWeight += pokemonTwoStats.weight;
-      //$('#pokeImgOne').attr('src', pokemonOneStats.sprites.front_default);
-     // $('#pokeImgTwo').attr('src', pokemonTwoStats.sprites.back_default);
 
-    },
-    (error) => {
-      console.log("bad request", error)
-    }
-  )
-
-}
-*/
+function attack () {
+ let enemytoAttack = (Math.floor(Math.random() * (8 - 3) + 3));
+ if (enemytoAttack < 5) {
+  alert('The attack missed');
+ } else if (enemytoAttack === 5) {
+  enemyTeam.health_1 = enemyTeam.health_1 - 20;
+  alert('The attack hit! Pokemon 1 took damage. This pokemon has ' + enemyTeam.health_1 + ' health remaining');
+  if(enemyTeam.health_1 <= 0) {
+    alert('pokemon 1 fainted');
+  }
+ } else if (enemytoAttack === 6) {
+  enemyTeam.health_2 = enemyTeam.health_2 - 20;
+  alert('The attack hit! Pokemon 2 took damage. This pokemon has ' + enemyTeam.health_2 + ' health remaining');
+  if(enemyTeam.health_2 <= 0) {
+    alert('pokemon 2 fainted');
+  }
+ } else if (enemytoAttack === 7) {
+  enemyTeam.health_3 = enemyTeam.health_3 - 20;
+  alert('The attack hit! Pokemon 3 took damage. This pokemon has ' + enemyTeam.health_3 + ' health remaining');
+  if(enemyTeam.health_3 <= 0) {
+    alert('pokemon 3 fainted');
+  }
+ } else if (enemytoAttack === 8) {
+  enemyTeam.health_4 = enemyTeam.health_4 - 20;
+  alert('The attack hit! Pokemon 4 took damage. This pokemon has ' + enemyTeam.health_4 + ' health remaining');
+  if(enemyTeam.health_4 <= 0) {
+    alert('pokemon 4 fainted');
+  }
+ }
+ console.log(enemytoAttack);
+};
+function enemyAttack () {};
 
 let decideWinner = function() {
   if (pokeOneWeight > pokeTwoWeight) {
