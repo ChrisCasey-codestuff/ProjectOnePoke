@@ -15,6 +15,10 @@ $('#encounterEnemy').on('submit', encounterEnemy)
 
 function assembleTeam() {
   event.preventDefault()
+  userTeam.health_1 = 100;
+  userTeam.health_2 = 100;
+  userTeam.health_3 = 100;
+  userTeam.health_4 = 100;
   $('#memOne').show();
   $('#memTwo').show();
   $('#memThree').show();
@@ -78,6 +82,10 @@ function assembleTeam() {
 
 function encounterEnemy() {
   event.preventDefault()
+  enemyTeam.health_1 = 100;
+  enemyTeam.health_2 = 100;
+  enemyTeam.health_3 = 100;
+  enemyTeam.health_4 = 100;
   $('#enemyPokeFour').show();
   $('#enemyPokeThree').show();
   $('#enemyPokeTwo').show();
@@ -143,8 +151,12 @@ function encounterEnemy() {
 
 function battle () {
   event.preventDefault()
+  if (enemyTeam.pokeOne === null || enemyTeam.pokeOne === undefined) {
+    alert('There is nobody to fight you maniac!')
+    return;
+  }
   $('body').append('<audio id= "battleSong" src="/musi/1-28. Battle (Vs. Gym Leader).mp3" autoplay>')
-  $('#battleSong')[0].volume = 0.45;
+  $('#battleSong')[0].volume = 0.1;
   userTeam.health_1 = 100;
   userTeam.health_2 = 100;
   userTeam.health_3 = 100;
@@ -153,6 +165,14 @@ function battle () {
   enemyTeam.health_2 = 100;
   enemyTeam.health_3 = 100;
   enemyTeam.health_4 = 100;
+  $('#teamMemOne').after('<b class="healthPoints" id="userPokeOneHealth">' + userTeam.health_1 + '</b>')
+  $('#teamMemTwo').after('<b class="healthPoints" id="userPokeTwoHealth">' + userTeam.health_2 + '</b>')
+  $('#teamMemThree').after('<b class="healthPoints" id="userPokeThreeHealth">' + userTeam.health_3 + '</b>')
+  $('#teamMemFour').after('<b class="healthPoints" id="userPokeFourHealth">' + userTeam.health_4 + '</b>')
+  $('#enemyPokeOne').after('<b class="healthPoints" id="enemyPokeOneHealth">' + enemyTeam.health_1 + '</b>')
+  $('#enemyPokeTwo').after('<b class="healthPoints" id="enemyPokeTwoHealth">' + enemyTeam.health_2 + '</b>')
+  $('#enemyPokeThree').after('<b class="healthPoints" id="enemyPokeThreeHealth">' + enemyTeam.health_3 + '</b>')
+  $('#enemyPokeFour').after('<b class="healthPoints" id="enemyPokeFourHealth">' + enemyTeam.health_4 + '</b>')
   enemyTargets = ['miss' ,'target_1', 'target_2', 'target_3', 'target_4']
   targets = ['miss' ,'target_1', 'target_2', 'target_3', 'target_4']
   if (enemyTeam.pokeOne === null) {
@@ -163,13 +183,19 @@ function battle () {
   console.log('hi')
   $('#getTeam').hide()
   $('#encounterEnemy').hide();
-  $('#battle').replaceWith('<button id="flee"> Flee!</button>')
+  $('#battle').replaceWith('<button id="flee"> Flee and Heal! </button>')
   $('#memOne').append('<button class="attackButt">' + pokemonUnoData.name + ' I choose you! Attack!</button>')
   $('#memTwo').append('<button class="attackButt">' + pokemonDosData.name + ' I choose you! Attack!</button>')
   $('#memThree').append('<button class="attackButt">' + pokemonTresData.name + ' I choose you! Attack!</button>')
   $('#memFour').append('<button class="attackButt">' + pokemonQuatroData.name + ' I choose you! Attack!</button>')
   $('.attackButt').on('click', attack);
   $('#flee').on('click', function () {
+    enemyTeam.pokeOne = null;
+    $('#memOne').show();
+    $('#memTwo').show();
+    $('#memThree').show();
+    $('#memFour').show();
+    $('.healthPoints').remove();
     $('#battleSong').remove();
     $('#flee').replaceWith('<button id="battle"> Battle!</button>')
     $('#getTeam').show()
@@ -206,7 +232,16 @@ function handleGetData(event) {
 }
 
 function attack () {
-  let damageTaken = (Math.floor(Math.random() * (40 - 20) + 20));
+  $('.healthPoints').remove();
+  $('#teamMemOne').after('<b class="healthPoints" id="userPokeOneHealth">' + userTeam.health_1 + '</b>')
+  $('#teamMemTwo').after('<b class="healthPoints" id="userPokeTwoHealth">' + userTeam.health_2 + '</b>')
+  $('#teamMemThree').after('<b class="healthPoints" id="userPokeThreeHealth">' + userTeam.health_3 + '</b>')
+  $('#teamMemFour').after('<b class="healthPoints" id="userPokeFourHealth">' + userTeam.health_4 + '</b>')
+  $('#enemyPokeOne').after('<b class="healthPoints" id="enemyPokeOneHealth">' + enemyTeam.health_1 + '</b>')
+  $('#enemyPokeTwo').after('<b class="healthPoints" id="enemyPokeTwoHealth">' + enemyTeam.health_2 + '</b>')
+  $('#enemyPokeThree').after('<b class="healthPoints" id="enemyPokeThreeHealth">' + enemyTeam.health_3 + '</b>')
+  $('#enemyPokeFour').after('<b class="healthPoints" id="enemyPokeFourHealth">' + enemyTeam.health_4 + '</b>')
+  let damageTaken = (Math.floor(Math.random() * (61 - 20) + 20));
   let enemytoAttack = targets[(Math.floor(Math.random() * (targets.length - 0) + 0))];
   console.log(enemytoAttack);
   if (enemytoAttack === 'miss') {
@@ -217,8 +252,9 @@ function attack () {
   if (enemytoAttack === 'target_1') {
     enemyTeam.health_1 = enemyTeam.health_1 - damageTaken;
     if (enemyTeam.health_1 <= 0) {
-      alert('Enemy ' + pokemonOneData.name +' fainted!')
-      $('#enemyPokeOne').hide();
+      alert('Enemy ' + pokemonOneData.name +' was hit! The pokemon fainted!')
+      $('#enemyPokeOneHealth').remove();
+      $('#enemyPokeTeamOne').hide();
       targets.splice(targets.indexOf('target_1'), 1);
       console.log(targets);
       enemyAttack();
@@ -234,8 +270,9 @@ function attack () {
   if (enemytoAttack === 'target_2') {
     enemyTeam.health_2 = enemyTeam.health_2 - damageTaken;
     if (enemyTeam.health_2 <= 0) {
-      alert('Enemy ' + pokemonTwoData.name + ' fainted!')
-      $('#enemyPokeTwo').hide();
+      alert('Enemy ' + pokemonTwoData.name + ' was hit! The pokemon fainted!')
+      $('#enemyPokeTwoHealth').remove();
+      $('#enemyPokeTeamTwo').hide();
       targets.splice(targets.indexOf('target_2'), 1);
       console.log(targets);
       enemyAttack();
@@ -251,8 +288,9 @@ function attack () {
   if (enemytoAttack === 'target_3') {
     enemyTeam.health_3 = enemyTeam.health_3 - damageTaken;
     if (enemyTeam.health_3 <= 0) {
-      alert('Enemy ' + pokemonThreeData.name + ' fainted!')
-      $('#enemyPokeThree').hide();
+      alert('Enemy ' + pokemonThreeData.name + ' was hit! The pokemon fainted!')
+      $('#enemyPokeThreeHealth').remove();
+      $('#enemyPokeTeamThree').hide();
       targets.splice(targets.indexOf('target_3'), 1);
       console.log(targets);
       if (targets.length === 1 || enemyTargets.length === 1) {
@@ -268,8 +306,9 @@ function attack () {
   if (enemytoAttack === 'target_4') {
     enemyTeam.health_4 = enemyTeam.health_4 - damageTaken;
     if (enemyTeam.health_4 <= 0) {
-      alert('Enemy ' + pokemonFourData.name + ' fainted!')
-      $('#enemyPokeFour').hide();
+      alert('Enemy ' + pokemonFourData.name + ' was hit! The pokemon fainted!')
+      $('#enemyPokeFourHealth').remove();
+      $('#enemyPokeTeamFour').hide();
       targets.splice(targets.indexOf('targets_4'), 1);
       console.log(targets);
       if (targets.length === 1 || enemyTargets.length === 1) {
@@ -286,7 +325,16 @@ function attack () {
 }
 
 function enemyAttack () {
-  let damageTaken = (Math.floor(Math.random() * (41 - 20) + 20));
+  $('.healthPoints').remove();
+  $('#teamMemOne').after('<b class="healthPoints" id="userPokeOneHealth">' + userTeam.health_1 + '</b>')
+  $('#teamMemTwo').after('<b class="healthPoints" id="userPokeTwoHealth">' + userTeam.health_2 + '</b>')
+  $('#teamMemThree').after('<b class="healthPoints" id="userPokeThreeHealth">' + userTeam.health_3 + '</b>')
+  $('#teamMemFour').after('<b class="healthPoints" id="userPokeFourHealth">' + userTeam.health_4 + '</b>')
+  $('#enemyPokeOne').after('<b class="healthPoints" id="enemyPokeOneHealth">' + enemyTeam.health_1 + '</b>')
+  $('#enemyPokeTwo').after('<b class="healthPoints" id="enemyPokeTwoHealth">' + enemyTeam.health_2 + '</b>')
+  $('#enemyPokeThree').after('<b class="healthPoints" id="enemyPokeThreeHealth">' + enemyTeam.health_3 + '</b>')
+  $('#enemyPokeFour').after('<b class="healthPoints" id="enemyPokeFourHealth">' + enemyTeam.health_4 + '</b>')
+  let damageTaken = (Math.floor(Math.random() * (61 - 20) + 20));
   let damageTaker = enemyTargets[(Math.floor(Math.random() * (enemyTargets.length - 0) + 0))];
   console.log(damageTaker);
   if(damageTaker === 'miss') {
@@ -296,7 +344,8 @@ function enemyAttack () {
   if(damageTaker === 'target_1') {
     userTeam.health_1 = userTeam.health_1 - damageTaken;
     if (userTeam.health_1 <= 0) {
-      alert('Your ' + pokemonUnoData.name + ' fainted!');
+      alert('Your ' + pokemonUnoData.name + ' was hit! Your pokemon fainted!');
+      $('#userPokeOneHealth').hide();
       $('#memOne').hide();
       enemyTargets.splice(enemyTargets.indexOf('target_1'), 1)
       console.log(enemyTargets)
@@ -306,13 +355,16 @@ function enemyAttack () {
       return;
     } else if (userTeam.health_1 > 0) {
     alert('Enemies attack landed! Your ' + pokemonUnoData.name + ' took ' + damageTaken + ' damage. This pokemon now has ' + userTeam.health_1 + ' health.');
+    $('#userPokeOneHealth').remove();
+    $('#teamMemOne').after('<b class="healthPoints" id="userPokeOneHealth">' + userTeam.health_1 + '</b>')
     return;
     }
   }
   if(damageTaker === 'target_2') {
     userTeam.health_2 = userTeam.health_2 - damageTaken;
     if (userTeam.health_2 <= 0) {
-      alert('Your ' + pokemonDosData.name + ' fainted!');
+      alert('Your ' + pokemonDosData.name + ' was hit! Your pokemon fainted!');
+      $('#userPokeTwoHealth').hide();
       $('#memTwo').hide();
       enemyTargets.splice(enemyTargets.indexOf('target_2'), 1)
       console.log(enemyTargets)
@@ -322,13 +374,16 @@ function enemyAttack () {
       return;
     } else if (userTeam.health_2 > 0) {
      alert('Enemies attack landed! Your ' + pokemonDosData.name + ' took ' + damageTaken + ' damage. This pokemon now has ' + userTeam.health_2 + ' health.');
+     $('#userPokeTwoHealth').remove();
+     $('#teamMemTwo').after('<b class="healthPoints" id="userPokeTwoHealth">' + userTeam.health_2 + '</b>')
      return;
      }
   }
   if(damageTaker === 'target_3') {
     userTeam.health_3 = userTeam.health_3 - damageTaken;
     if (userTeam.health_3 <= 0) {
-      alert('Your ' + pokemonTresData.name + ' fainted!');
+      alert('Your ' + pokemonTresData.name + ' was hit! Your pokemon fainted!');
+      $('#userPokeThreeHealth').hide();
       $('#memThree').hide();
       enemyTargets.splice(enemyTargets.indexOf('target_3'), 1)
       console.log(enemyTargets)
@@ -338,13 +393,16 @@ function enemyAttack () {
       return;
     } else if (userTeam.health_3 > 0) {
     alert('Enemies attack landed! Your ' + pokemonTresData.name + ' took ' + damageTaken + ' damage. This pokemon now has ' + userTeam.health_3 + ' health.');
+    $('#userPokeThreeHealth').remove();
+    $('#teamMemThree').after('<b class="healthPoints" id="userPokeThreeHealth">' + userTeam.health_3 + '</b>')
     return;
     }
   }
   if(damageTaker === 'target_4') {
     userTeam.health_4 = userTeam.health_4 - damageTaken;
     if (userTeam.health_4 <= 0) {
-      alert('Your ' + pokemonQuatroData.name + ' fainted!');
+      alert('Your ' + pokemonQuatroData.name + ' was hit! Your pokemon fainted!');
+      $('#userPokeFourHealth').hide();
       $('#memFour').hide();
       enemyTargets.splice(enemyTargets.indexOf('target_4'), 1)
       console.log(enemyTargets)
@@ -353,7 +411,9 @@ function enemyAttack () {
       }
       return;
     } else if (userTeam.health_4 > 0) {
-    alert('Enemies attack landed! Your ' + pokemonQuatroData.name + ' pokemon took ' + damageTaken + ' damage. This pokemon now has ' + userTeam.health_4 + ' health.');
+    alert('Enemies attack landed! Your ' + pokemonQuatroData.name + ' took ' + damageTaken + ' damage. This pokemon now has ' + userTeam.health_4 + ' health.');
+    $('#userPokeFourHealth').remove();
+    $('#teamMemFour').after('<b class="healthPoints" id="userPokeFourHealth">' + userTeam.health_4 + '</b>')
     return;
     }
   }
@@ -361,6 +421,7 @@ function enemyAttack () {
   return;
 }
   function gameOver() {
+    $('.healthPoints').remove();
     if (targets.length === 1) {
       alert('You win! Rival trainer defeated!')
     } else if (enemyTargets.length === 1) {
