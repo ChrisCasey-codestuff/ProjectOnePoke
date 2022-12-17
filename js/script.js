@@ -253,7 +253,10 @@ function attack () {
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
         return;
-      }
+      } else {
+        enemyAttack();
+      };
+
       return;
     }
     alert('The attack hit! Enemy ' + pokemonOneData.name + ' took ' + damageTaken +'. This pokemon now has ' + enemyTeam.health_1 + ' health remaining.');
@@ -271,7 +274,9 @@ function attack () {
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
         return;
-      }
+      } else {
+        enemyAttack();
+      };
       return;
     }
     alert('The attack hit! Enemy ' + pokemonTwoData.name + ' took ' + damageTaken +'. This pokemon now has ' + enemyTeam.health_2 + ' health remaining.');
@@ -288,8 +293,9 @@ function attack () {
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
         return;
-      }
-      enemyAttack();
+      } else {
+        enemyAttack();
+      };
       return;
     }
     alert('The attack hit! Enemy ' + pokemonThreeData.name + ' took ' + damageTaken +'. This pokemon now has ' + enemyTeam.health_3 + ' health remaining.');
@@ -306,8 +312,10 @@ function attack () {
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
         return;
+      } else {
+        enemyAttack();
       }
-      enemyAttack();
+
       return;
     }
     alert('The attack hit! Enemy ' + pokemonFourData.name + ' took ' + damageTaken +'. This pokemon now has ' + enemyTeam.health_4 + ' health remaining.');
@@ -435,6 +443,7 @@ function enemyAttack () {
         enemyTeam.pokeFour = null;
       }
       reset();
+      return;
     } else if (enemyTargets.length === 1) {
       alert('You have been defeated! Best to flee now!')
       function reset () {
@@ -459,5 +468,6 @@ function enemyAttack () {
         enemyTeam.pokeFour = null;
       }
       reset();
+      return;
     }
 }
