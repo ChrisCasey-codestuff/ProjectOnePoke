@@ -9,6 +9,7 @@
 1. Assemble your team!
 2. Encounter a rival trainer!
 3. Battle!
+4. Press the "play button" once in battle mode for sick pokemon battle music!
 
 ## Important Info
 
