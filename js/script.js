@@ -151,7 +151,7 @@ function battle () {
     alert('You do not have any pokemon to ride into battle with you silly goose! Go on! Assemble a team!');
     return;
   }
-  $('body').append('<audio id= "battleSong" src="/musi/1-28. Battle (Vs. Gym Leader).mp3" controls>')
+  $('body').append('<audio id= "battleSong" src="./musi/1-28. Battle (Vs. Gym Leader).mp3" controls>')
   $('#battleSong')[0].volume = 0.04;
   userTeam.health_1 = 100;
   userTeam.health_2 = 100;
