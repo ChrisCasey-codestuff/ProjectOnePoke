@@ -74,10 +74,6 @@ function assembleTeam() {
       console.log("bad request", error)
     }
   )
-   //$('#pokeImgOne').attr('src', userTeam.pokeOne.sprites.back_default);
-   //$('#pokeImgTwo').attr('src', userTeam.pokeTwo.sprites.back_default);
-   //$('#pokeImgTwo').attr('src', userTeam.pokeThree.sprites.back_default);
-   //$('#pokeImgTwo').attr('src', userTeam.pokeFour.sprites.back_default);
 }
 
 function encounterEnemy() {
@@ -141,11 +137,7 @@ function encounterEnemy() {
     }
 
   )
-   //$('#pokeImgOne').attr('src', userTeam.pokeOne.sprites.back_default);
-   //$('#pokeImgTwo').attr('src', userTeam.pokeTwo.sprites.back_default);
-   //$('#pokeImgTwo').attr('src', userTeam.pokeThree.sprites.back_default);
-   //$('#pokeImgTwo').attr('src', userTeam.pokeFour.sprites.back_default);
-   console.log(userTeam);
+
    $(".enemyPoke").show();
 }
 
@@ -183,8 +175,6 @@ function battle () {
     alert('There is nobody to fight you maniac!')
     return;
   } else if (enemyTeam.pokeOne !== null) {
-  console.log(enemyTeam);
-  console.log('hi')
   $('#getTeam').hide()
   $('#encounterEnemy').hide();
   $('#battle').replaceWith('<button id="flee"> Flee and Heal! </button>')
@@ -247,7 +237,6 @@ function attack () {
   $('#enemyPokeFour').after('<b class="healthPoints" id="enemyPokeFourHealth">' + enemyTeam.health_4 + '</b>')
   let damageTaken = (Math.floor(Math.random() * (61 - 20) + 20));
   let enemytoAttack = targets[(Math.floor(Math.random() * (targets.length - 0) + 0))];
-  console.log(enemytoAttack);
   if (enemytoAttack === 'miss') {
     alert('Your attack missed!');
     enemyAttack();
@@ -260,7 +249,6 @@ function attack () {
       $('#enemyPokeOneHealth').remove();
       $('#enemyPokeTeamOne').hide();
       targets.splice(targets.indexOf('target_1'), 1);
-      console.log(targets);
       enemyAttack();
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
@@ -279,7 +267,6 @@ function attack () {
       $('#enemyPokeTwoHealth').remove();
       $('#enemyPokeTeamTwo').hide();
       targets.splice(targets.indexOf('target_2'), 1);
-      console.log(targets);
       enemyAttack();
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
@@ -298,7 +285,6 @@ function attack () {
       $('#enemyPokeThreeHealth').remove();
       $('#enemyPokeTeamThree').hide();
       targets.splice(targets.indexOf('target_3'), 1);
-      console.log(targets);
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
         return;
@@ -317,7 +303,6 @@ function attack () {
       $('#enemyPokeFourHealth').remove();
       $('#enemyPokeTeamFour').hide();
       targets.splice(targets.indexOf('targets_4'), 1);
-      console.log(targets);
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
         return;
@@ -356,7 +341,6 @@ function enemyAttack () {
       $('#userPokeOneHealth').hide();
       $('#memOne').hide();
       enemyTargets.splice(enemyTargets.indexOf('target_1'), 1)
-      console.log(enemyTargets)
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
       }
@@ -375,7 +359,6 @@ function enemyAttack () {
       $('#userPokeTwoHealth').hide();
       $('#memTwo').hide();
       enemyTargets.splice(enemyTargets.indexOf('target_2'), 1)
-      console.log(enemyTargets)
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
       }
@@ -393,8 +376,7 @@ function enemyAttack () {
       alert('Your ' + pokemonTresData.name + ' was hit! Your pokemon fainted!');
       $('#userPokeThreeHealth').hide();
       $('#memThree').hide();
-      enemyTargets.splice(enemyTargets.indexOf('target_3'), 1)
-      console.log(enemyTargets)
+      enemyTargets.splice(enemyTargets.indexOf('target_3'), 1);
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
       }
@@ -412,8 +394,7 @@ function enemyAttack () {
       alert('Your ' + pokemonQuatroData.name + ' was hit! Your pokemon fainted!');
       $('#userPokeFourHealth').hide();
       $('#memFour').hide();
-      enemyTargets.splice(enemyTargets.indexOf('target_4'), 1)
-      console.log(enemyTargets)
+      enemyTargets.splice(enemyTargets.indexOf('target_4'), 1);
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
       }
