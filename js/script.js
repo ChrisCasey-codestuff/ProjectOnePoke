@@ -155,8 +155,12 @@ function battle () {
     alert('There is nobody to fight you maniac!')
     return;
   }
-  $('body').append('<audio id= "battleSong" src="/musi/1-28. Battle (Vs. Gym Leader).mp3" autoplay>')
-  $('#battleSong')[0].volume = 0.1;
+  if (userTeam.pokeOne === null || userTeam.pokeOne === undefined) {
+    alert('You do not have any pokemon to ride into battle with you silly goose! Go on! Assemble a team!');
+    return;
+  }
+  $('body').append('<audio id= "battleSong" src="/musi/1-28. Battle (Vs. Gym Leader).mp3" controls>')
+  $('#battleSong')[0].volume = 0.04;
   userTeam.health_1 = 100;
   userTeam.health_2 = 100;
   userTeam.health_3 = 100;
@@ -260,6 +264,7 @@ function attack () {
       enemyAttack();
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
+        return;
       }
       return;
     }
@@ -278,6 +283,7 @@ function attack () {
       enemyAttack();
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
+        return;
       }
       return;
     }
@@ -295,6 +301,7 @@ function attack () {
       console.log(targets);
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
+        return;
       }
       enemyAttack();
       return;
@@ -313,6 +320,7 @@ function attack () {
       console.log(targets);
       if (targets.length === 1 || enemyTargets.length === 1) {
         gameOver();
+        return;
       }
       enemyAttack();
       return;
@@ -424,7 +432,51 @@ function enemyAttack () {
     $('.healthPoints').remove();
     if (targets.length === 1) {
       alert('You win! Rival trainer defeated!')
+      function reset () {
+        enemyTeam.pokeOne = null;
+        $('#memOne').show();
+        $('#memTwo').show();
+        $('#memThree').show();
+        $('#memFour').show();
+        $('.healthPoints').remove();
+        $('#battleSong').remove();
+        $('#flee').replaceWith('<button id="battle"> Battle!</button>')
+        $('#getTeam').show()
+        $('#encounterEnemy').show();
+        $('.attackButt').remove();
+        $('.enemyPoke').hide();
+        $('#battle').on('click', battle);
+        $('#assembleTeam').on('click', assembleTeam);
+        $('#encounterEnemy').on('click', encounterEnemy);
+        enemyTeam.pokeOne = null;
+        enemyTeam.pokeTwo = null;
+        enemyTeam.pokeThree = null;
+        enemyTeam.pokeFour = null;
+      }
+      reset();
     } else if (enemyTargets.length === 1) {
       alert('You have been defeated! Best to flee now!')
+      function reset () {
+        enemyTeam.pokeOne = null;
+        $('#memOne').show();
+        $('#memTwo').show();
+        $('#memThree').show();
+        $('#memFour').show();
+        $('.healthPoints').remove();
+        $('#battleSong').remove();
+        $('#flee').replaceWith('<button id="battle"> Battle!</button>')
+        $('#getTeam').show()
+        $('#encounterEnemy').show();
+        $('.attackButt').remove();
+        $('.enemyPoke').hide();
+        $('#battle').on('click', battle);
+        $('#assembleTeam').on('click', assembleTeam);
+        $('#encounterEnemy').on('click', encounterEnemy);
+        enemyTeam.pokeOne = null;
+        enemyTeam.pokeTwo = null;
+        enemyTeam.pokeThree = null;
+        enemyTeam.pokeFour = null;
+      }
+      reset();
     }
 }

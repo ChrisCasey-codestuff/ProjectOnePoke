@@ -1,16 +1,16 @@
-Welcome to The Pokemon World Tournament!
+# Welcome to The Pokemon World Tournament!
 
-The home for teambased, free for all, pokemon battles!
+# The home for teambased, free for all, pokemon battles!
 
-This application was made wiht love using javascript, html, css, Jquery, and Ajax!
+## This application was made with love using javascript, html, css, Jquery, and Ajax!
 
-How to play!
+## How to play!
 
 1. Assemble your team!
 2. Encounter a rival trainer!
 3. Battle!
 
-Important Info
+## Important Info
 
 1. You may regenrate new pokemon teams and opponents to battle as many times as you like!
 
