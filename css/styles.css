@@ -3,9 +3,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url(https://img.freepik.com/premium-vector/old-paper-texture-background_108964-98.jpg?w=2000;)
+  background-image: url(https://studio.code.org/v3/assets/yTEQBrNJgJOl_9WjY2CqMH72tetiKtHxPusReq8qkW8/gigantic_battle_background_by_kyle_dove-d5nwldw.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: fantasy;
+  font-weight: 500;
 }
 
+h1 {
+  margin-top: 60px;
+}
 
 img {
   width: 140px;
@@ -16,7 +23,7 @@ img {
   align-items: center;
 }
 #yourPoke{
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: 195px;
   margin-bottom: 0px;
   margin-right: 150px;
@@ -39,6 +46,7 @@ img {
 #enemyTeam {
   display: flex;
   flex-direction: row;
+  margin-top: 100px;
 }
 #enemyPoke {
   margin-top: 15px;

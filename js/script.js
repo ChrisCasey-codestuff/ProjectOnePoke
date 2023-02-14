@@ -161,14 +161,14 @@ function battle () {
   enemyTeam.health_2 = 100;
   enemyTeam.health_3 = 100;
   enemyTeam.health_4 = 100;
-  $('#teamMemOne').after('<b class="healthPoints" id="userPokeOneHealth">' + userTeam.health_1 + '</b>')
-  $('#teamMemTwo').after('<b class="healthPoints" id="userPokeTwoHealth">' + userTeam.health_2 + '</b>')
-  $('#teamMemThree').after('<b class="healthPoints" id="userPokeThreeHealth">' + userTeam.health_3 + '</b>')
-  $('#teamMemFour').after('<b class="healthPoints" id="userPokeFourHealth">' + userTeam.health_4 + '</b>')
-  $('#enemyPokeOne').after('<b class="healthPoints" id="enemyPokeOneHealth">' + enemyTeam.health_1 + '</b>')
-  $('#enemyPokeTwo').after('<b class="healthPoints" id="enemyPokeTwoHealth">' + enemyTeam.health_2 + '</b>')
-  $('#enemyPokeThree').after('<b class="healthPoints" id="enemyPokeThreeHealth">' + enemyTeam.health_3 + '</b>')
-  $('#enemyPokeFour').after('<b class="healthPoints" id="enemyPokeFourHealth">' + enemyTeam.health_4 + '</b>')
+  $('#teamMemOne').after('<b class="healthPoints" id="userPokeOneHealth">' + userTeam.health_1 + ' HP' + '</b>')
+  $('#teamMemTwo').after('<b class="healthPoints" id="userPokeTwoHealth">' + userTeam.health_2 + ' HP' + '</b>')
+  $('#teamMemThree').after('<b class="healthPoints" id="userPokeThreeHealth">' + userTeam.health_3 + ' HP' + '</b>')
+  $('#teamMemFour').after('<b class="healthPoints" id="userPokeFourHealth">' + userTeam.health_4 + ' HP' + '</b>')
+  $('#enemyPokeOne').after('<b class="healthPoints" id="enemyPokeOneHealth">' + enemyTeam.health_1 + ' HP' + '</b>')
+  $('#enemyPokeTwo').after('<b class="healthPoints" id="enemyPokeTwoHealth">' + enemyTeam.health_2 + ' HP' + '</b>')
+  $('#enemyPokeThree').after('<b class="healthPoints" id="enemyPokeThreeHealth">' + enemyTeam.health_3 + ' HP' + '</b>')
+  $('#enemyPokeFour').after('<b class="healthPoints" id="enemyPokeFourHealth">' + enemyTeam.health_4 + ' HP' + '</b>')
   enemyTargets = ['miss' ,'target_1', 'target_2', 'target_3', 'target_4']
   targets = ['miss' ,'target_1', 'target_2', 'target_3', 'target_4']
   if (enemyTeam.pokeOne === null) {
@@ -227,14 +227,14 @@ function handleGetData(event) {
 
 function attack () {
   $('.healthPoints').remove();
-  $('#teamMemOne').after('<b class="healthPoints" id="userPokeOneHealth">' + userTeam.health_1 + '</b>')
-  $('#teamMemTwo').after('<b class="healthPoints" id="userPokeTwoHealth">' + userTeam.health_2 + '</b>')
-  $('#teamMemThree').after('<b class="healthPoints" id="userPokeThreeHealth">' + userTeam.health_3 + '</b>')
-  $('#teamMemFour').after('<b class="healthPoints" id="userPokeFourHealth">' + userTeam.health_4 + '</b>')
-  $('#enemyPokeOne').after('<b class="healthPoints" id="enemyPokeOneHealth">' + enemyTeam.health_1 + '</b>')
-  $('#enemyPokeTwo').after('<b class="healthPoints" id="enemyPokeTwoHealth">' + enemyTeam.health_2 + '</b>')
-  $('#enemyPokeThree').after('<b class="healthPoints" id="enemyPokeThreeHealth">' + enemyTeam.health_3 + '</b>')
-  $('#enemyPokeFour').after('<b class="healthPoints" id="enemyPokeFourHealth">' + enemyTeam.health_4 + '</b>')
+  $('#teamMemOne').after('<b class="healthPoints" id="userPokeOneHealth">' + userTeam.health_1 + ' HP' + '</b>')
+  $('#teamMemTwo').after('<b class="healthPoints" id="userPokeTwoHealth">' + userTeam.health_2 + ' HP' + '</b>')
+  $('#teamMemThree').after('<b class="healthPoints" id="userPokeThreeHealth">' + userTeam.health_3 + ' HP' + '</b>')
+  $('#teamMemFour').after('<b class="healthPoints" id="userPokeFourHealth">' + userTeam.health_4 + ' HP' + '</b>')
+  $('#enemyPokeOne').after('<b class="healthPoints" id="enemyPokeOneHealth">' + enemyTeam.health_1 + ' HP' + '</b>')
+  $('#enemyPokeTwo').after('<b class="healthPoints" id="enemyPokeTwoHealth">' + enemyTeam.health_2 + ' HP' + '</b>')
+  $('#enemyPokeThree').after('<b class="healthPoints" id="enemyPokeThreeHealth">' + enemyTeam.health_3 + ' HP' + '</b>')
+  $('#enemyPokeFour').after('<b class="healthPoints" id="enemyPokeFourHealth">' + enemyTeam.health_4 + ' HP' + '</b>')
   let damageTaken = (Math.floor(Math.random() * (61 - 20) + 20));
   let enemytoAttack = targets[(Math.floor(Math.random() * (targets.length - 0) + 0))];
   if (enemytoAttack === 'miss') {
@@ -327,14 +327,14 @@ function attack () {
 
 function enemyAttack () {
   $('.healthPoints').remove();
-  $('#teamMemOne').after('<b class="healthPoints" id="userPokeOneHealth">' + userTeam.health_1 + '</b>')
-  $('#teamMemTwo').after('<b class="healthPoints" id="userPokeTwoHealth">' + userTeam.health_2 + '</b>')
-  $('#teamMemThree').after('<b class="healthPoints" id="userPokeThreeHealth">' + userTeam.health_3 + '</b>')
-  $('#teamMemFour').after('<b class="healthPoints" id="userPokeFourHealth">' + userTeam.health_4 + '</b>')
-  $('#enemyPokeOne').after('<b class="healthPoints" id="enemyPokeOneHealth">' + enemyTeam.health_1 + '</b>')
-  $('#enemyPokeTwo').after('<b class="healthPoints" id="enemyPokeTwoHealth">' + enemyTeam.health_2 + '</b>')
-  $('#enemyPokeThree').after('<b class="healthPoints" id="enemyPokeThreeHealth">' + enemyTeam.health_3 + '</b>')
-  $('#enemyPokeFour').after('<b class="healthPoints" id="enemyPokeFourHealth">' + enemyTeam.health_4 + '</b>')
+  $('#teamMemOne').after('<b class="healthPoints" id="userPokeOneHealth">' + userTeam.health_1 + ' HP' + '</b>')
+  $('#teamMemTwo').after('<b class="healthPoints" id="userPokeTwoHealth">' + userTeam.health_2 + ' HP' + '</b>')
+  $('#teamMemThree').after('<b class="healthPoints" id="userPokeThreeHealth">' + userTeam.health_3 + ' HP' + '</b>')
+  $('#teamMemFour').after('<b class="healthPoints" id="userPokeFourHealth">' + userTeam.health_4 + ' HP' + '</b>')
+  $('#enemyPokeOne').after('<b class="healthPoints" id="enemyPokeOneHealth">' + enemyTeam.health_1 + ' HP' + '</b>')
+  $('#enemyPokeTwo').after('<b class="healthPoints" id="enemyPokeTwoHealth">' + enemyTeam.health_2 + ' HP' + '</b>')
+  $('#enemyPokeThree').after('<b class="healthPoints" id="enemyPokeThreeHealth">' + enemyTeam.health_3 + ' HP' + '</b>')
+  $('#enemyPokeFour').after('<b class="healthPoints" id="enemyPokeFourHealth">' + enemyTeam.health_4 + ' HP' + '</b>')
   let damageTaken = (Math.floor(Math.random() * (61 - 20) + 20));
   let damageTaker = enemyTargets[(Math.floor(Math.random() * (enemyTargets.length - 0) + 0))];
   console.log(damageTaker);
@@ -356,7 +356,7 @@ function enemyAttack () {
     } else if (userTeam.health_1 > 0) {
     alert('Enemies attack landed! Your ' + pokemonUnoData.name + ' took ' + damageTaken + ' damage. This pokemon now has ' + userTeam.health_1 + ' health.');
     $('#userPokeOneHealth').remove();
-    $('#teamMemOne').after('<b class="healthPoints" id="userPokeOneHealth">' + userTeam.health_1 + '</b>')
+    $('#teamMemOne').after('<b class="healthPoints" id="userPokeOneHealth">' + userTeam.health_1 + ' HP' + '</b>')
     return;
     }
   }
@@ -374,7 +374,7 @@ function enemyAttack () {
     } else if (userTeam.health_2 > 0) {
      alert('Enemies attack landed! Your ' + pokemonDosData.name + ' took ' + damageTaken + ' damage. This pokemon now has ' + userTeam.health_2 + ' health.');
      $('#userPokeTwoHealth').remove();
-     $('#teamMemTwo').after('<b class="healthPoints" id="userPokeTwoHealth">' + userTeam.health_2 + '</b>')
+     $('#teamMemTwo').after('<b class="healthPoints" id="userPokeTwoHealth">' + userTeam.health_2 + ' HP' + '</b>')
      return;
      }
   }
@@ -392,7 +392,7 @@ function enemyAttack () {
     } else if (userTeam.health_3 > 0) {
     alert('Enemies attack landed! Your ' + pokemonTresData.name + ' took ' + damageTaken + ' damage. This pokemon now has ' + userTeam.health_3 + ' health.');
     $('#userPokeThreeHealth').remove();
-    $('#teamMemThree').after('<b class="healthPoints" id="userPokeThreeHealth">' + userTeam.health_3 + '</b>')
+    $('#teamMemThree').after('<b class="healthPoints" id="userPokeThreeHealth">' + userTeam.health_3 + ' HP' + '</b>')
     return;
     }
   }
@@ -410,7 +410,7 @@ function enemyAttack () {
     } else if (userTeam.health_4 > 0) {
     alert('Enemies attack landed! Your ' + pokemonQuatroData.name + ' took ' + damageTaken + ' damage. This pokemon now has ' + userTeam.health_4 + ' health.');
     $('#userPokeFourHealth').remove();
-    $('#teamMemFour').after('<b class="healthPoints" id="userPokeFourHealth">' + userTeam.health_4 + '</b>')
+    $('#teamMemFour').after('<b class="healthPoints" id="userPokeFourHealth">' + userTeam.health_4 + ' HP' + '</b>')
     return;
     }
   }
@@ -445,28 +445,28 @@ function enemyAttack () {
       reset();
       return;
     } else if (enemyTargets.length === 1) {
-      alert('You have been defeated! Best to flee now!')
-      function reset () {
-        enemyTeam.pokeOne = null;
-        $('#memOne').show();
-        $('#memTwo').show();
-        $('#memThree').show();
-        $('#memFour').show();
-        $('.healthPoints').remove();
-        $('#battleSong').remove();
-        $('#flee').replaceWith('<button id="battle"> Battle!</button>')
-        $('#getTeam').show()
-        $('#encounterEnemy').show();
-        $('.attackButt').remove();
-        $('.enemyPoke').hide();
-        $('#battle').on('click', battle);
-        $('#assembleTeam').on('click', assembleTeam);
-        $('#encounterEnemy').on('click', encounterEnemy);
-        enemyTeam.pokeOne = null;
-        enemyTeam.pokeTwo = null;
-        enemyTeam.pokeThree = null;
-        enemyTeam.pokeFour = null;
-      }
+        alert('You have been defeated! Best to flee now!')
+        function reset () {
+          enemyTeam.pokeOne = null;
+          $('#memOne').show();
+          $('#memTwo').show();
+          $('#memThree').show();
+          $('#memFour').show();
+          $('.healthPoints').remove();
+          $('#battleSong').remove();
+          $('#flee').replaceWith('<button id="battle"> Battle!</button>')
+          $('#getTeam').show()
+          $('#encounterEnemy').show();
+          $('.attackButt').remove();
+          $('.enemyPoke').hide();
+          $('#battle').on('click', battle);
+          $('#assembleTeam').on('click', assembleTeam);
+          $('#encounterEnemy').on('click', encounterEnemy);
+          enemyTeam.pokeOne = null;
+          enemyTeam.pokeTwo = null;
+          enemyTeam.pokeThree = null;
+          enemyTeam.pokeFour = null;
+       }
       reset();
       return;
     }
