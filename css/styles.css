@@ -3,7 +3,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url(https://studio.code.org/v3/assets/yTEQBrNJgJOl_9WjY2CqMH72tetiKtHxPusReq8qkW8/gigantic_battle_background_by_kyle_dove-d5nwldw.jpg);
+  background-image: url('../backgroundbattle.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
