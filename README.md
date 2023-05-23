@@ -17,6 +17,9 @@
 
 2. Ordering one of your pokemon to attack will initiate battle sequence! Your attack will either damage the enemy teams pokemon or miss! Then the enemy pokemon will counter attack! Each pokemon begins a battle with 100hp, as the battle rages, if a pokemons hp reaches zero that pokemon will faint and will be no longer able to battle! Pokemon hospital coming soon! P.S. pokemon damage will be a random roll integer between 20-60!
 
+Deployed App Link: 
+[World Pokemon Tournament](https://6452e72c920a5d0677d8aee9--meek-treacle-ec8ccb.netlify.app/)
+
 Stretch Goals!
 
 1. further implement strategy in the battle mechanic, I would like to have pokemon type factor into my calculation of pokemon damage.
