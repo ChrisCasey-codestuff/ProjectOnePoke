@@ -39,6 +39,7 @@ img {
 #pokeTeam {
   display: flex;
   flex-direction: row;
+  margin-left: 5px;
 }
 
 #flee {
