@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 body {
   display: flex;
@@ -15,7 +19,9 @@ h1 {
 }
 
 img {
-  width: 140px;
+  size: cover;
+  width: auto;
+  height: auto;
 }
 #myButtons {
   display: flex;
